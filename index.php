@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Challenge</h2>
+                <h2>Address Book Challenge</h2>
                 <p>Develop a Angular 1.x based basic address book application in under (3-5) hours.</p>
                 <p>The data source is supplied in an XML file: <a href="/subsite/addressBook/resources/ab.xml" alt="Address Book XML File" target="_blank">address book data</a></p>
                 <p>Application specification is not provided. You decide on the functionality and features that you can deliver within the time limit.
@@ -61,71 +61,86 @@
     
     <div ng-app="myApp" ng-controller="appCtrl">
         <div class="container">
-            <h2>Business Card View</h2>
-            <div class="row" id="cardsView">
-                <div class="card col-12 col-md-10 col-lg-6" ng-repeat="x in contacts">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ x.CompanyName }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ x.ContactName }} - {{ x.ContactTitle }}</h6>
-                        <div class="row">
-                            <div class="col-6">
-                                <span>Email: {{ x.Email }}</span><br>
-                                <span>Phone: {{ x.Phone }}</span><br>
-                                <span>Fax: {{ x.Fax }}</span>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#buisnessCardView">Business Card View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#tableView">Table View</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane container active" id="buisnessCardView">
+                    <h2>Business Card View</h2>
+                    <div class="row" id="cardsView">
+                        <div class="justify-content-md-center col-12 col-lg-6" ng-repeat="x in contacts">
+                            <div class="card col-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ x.CompanyName }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ x.ContactName }} - {{ x.ContactTitle }}</h6>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6">
+                                            <span>Email: {{ x.Email }}</span><br>
+                                            <span>Phone: {{ x.Phone }}</span><br>
+                                            <span class="faxSpan">{{ x.Fax ? 'Fax: ' + x.Fax : ''}}</span>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <span>{{ x.Address }}</span><br>
+                                            <span>{{ x.City }}, {{ x.Country }}</span><br>
+                                            <span>{{ x.PostalCode }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <span>{{ x.Address }}</span><br>
-                                <span>{{ x.City }}, {{ x.Country }}</span><br>
-                                <span>{{ x.PostalCode }}</span>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container-fluid fade" id="tableView">
+                    <div class="row">
+                        <h2>Table View</h2>
+                        <div class="col-12" id="tableView">
+                            <table class="table-sm table-responsive table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Company Name</th>
+                                        <th>Contact Name</th>
+                                        <th>Contact Title</th>
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>Email</th>
+                                        <th>Postal Code</th>
+                                        <th>Country</th>
+                                        <th>Phone</th>
+                                        <th>Fax</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in contacts">
+                                        <td>{{ x.CustomerID }}</td>
+                                        <td>{{ x.CompanyName }}</td>
+                                        <td>{{ x.ContactName }}</td>
+                                        <td>{{ x.ContactTitle }}</td>
+                                        <td>{{ x.Address }}</td>
+                                        <td>{{ x.City }}</td>
+                                        <td>{{ x.Email }}</td>
+                                        <td>{{ x.PostalCode }}</td>
+                                        <td>{{ x.Country }}</td>
+                                        <td>{{ x.Phone }}</td>
+                                        <td>{{ x.Fax }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <h2>Table View</h2>
-                <div class="col-12" id="tableView">
-                    <table class="table-sm table-responsive table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Customer ID</th>
-                                <th>Company Name</th>
-                                <th>Contact Name</th>
-                                <th>Contact Title</th>
-                                <th>Address</th>
-                                <th>City</th>
-                                <th>Email</th>
-                                <th>Postal Code</th>
-                                <th>Country</th>
-                                <th>Phone</th>
-                                <th>Fax</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="x in contacts">
-                                <td>{{ x.CustomerID }}</td>
-                                <td>{{ x.CompanyName }}</td>
-                                <td>{{ x.ContactName }}</td>
-                                <td>{{ x.ContactTitle }}</td>
-                                <td>{{ x.Address }}</td>
-                                <td>{{ x.City }}</td>
-                                <td>{{ x.Email }}</td>
-                                <td>{{ x.PostalCode }}</td>
-                                <td>{{ x.Country }}</td>
-                                <td>{{ x.Phone }}</td>
-                                <td>{{ x.Fax }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
     </div>
     
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!--<script src="js/main.js?v=1.1"></script>-->
     <!--Add xml2json library for xml to json parser-->
